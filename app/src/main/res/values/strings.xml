@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">GestionProductosElectronicos</string>
+
+    <string-array name="tipo_dispositivo">
+        <item>Smartphone</item>
+        <item>Laptop</item>
+        <item>Tablet</item>
+        <item>TabletRefurbished</item>
+    </string-array>
+
+    <string-array name="opciones_si_no">
+        <item>Sí</item>
+        <item>No</item>
+    </string-array>
+</resources>
