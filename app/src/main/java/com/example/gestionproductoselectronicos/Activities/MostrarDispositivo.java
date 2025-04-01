@@ -80,17 +80,17 @@ public class MostrarDispositivo extends AppCompatActivity
         if (posicionSeleccionada >= 0 && posicionSeleccionada < controllerDispositivo.dispositivos.size())
         {
             Dispositivo dispositivo = controllerDispositivo.dispositivos.get(posicionSeleccionada);
-            String detalles = "Detalles del Dispositivo:\n\n" + dispositivo.mostrarDetalles() + "\nPrecio Total: $" + dispositivo.calcular_precio();
+            String detalles = "Tipo: " + dispositivo.getClass().getSimpleName() + "\n\n"
+                                       + dispositivo.mostrarDetalles()
+                                       + "\nPrecio Total: $" + dispositivo.calcular_precio();
             tvResultado.setText(detalles);
         }
     }
 
-    private void actualizarEstadisticas()
-    {
+    private void actualizarEstadisticas() {
         int totalDispositivos = controllerDispositivo.dispositivos.size();
 
-        if (totalDispositivos == 0)
-        {
+        if (totalDispositivos == 0) {
             tvEstadisticas.setText("No hay dispositivos registrados");
             return;
         }
@@ -100,6 +100,12 @@ public class MostrarDispositivo extends AppCompatActivity
         double promedioPrecios = 0;
         int stockTotal = 0;
 
+        // Nuevas variables para acumular los valores de number
+        int totalNumberLaptops = 0;
+        int totalNumberSmartphones = 0;
+        int totalNumberTablets = 0;
+        int totalNumberTabletsRefurb = 0;
+
         for (Dispositivo dispositivo : controllerDispositivo.dispositivos)
         {
             ingresosTotales += dispositivo.calcular_precio();
@@ -108,15 +114,19 @@ public class MostrarDispositivo extends AppCompatActivity
             if (dispositivo instanceof Laptop)
             {
                 laptops++;
+                totalNumberLaptops += dispositivo.getNumber();
             } else if (dispositivo instanceof Smartphone)
             {
                 smartphones++;
+                totalNumberSmartphones += dispositivo.getNumber();
             } else if (dispositivo instanceof TabletRefurbished)
             {
                 tabletsRefurb++;
+                totalNumberTabletsRefurb += dispositivo.getNumber();
             } else if (dispositivo instanceof Tablet)
             {
                 tablets++;
+                totalNumberTablets += dispositivo.getNumber();
             }
         }
 
@@ -132,7 +142,12 @@ public class MostrarDispositivo extends AppCompatActivity
                         "  - Laptops: %d (%.0f%%)\n" +
                         "  - Smartphones: %d (%.0f%%)\n" +
                         "  - Tablets: %d (%.0f%%)\n" +
-                        "  - Tablets Refurbished: %d (%.0f%%)",
+                        "  - Tablets Refurbished: %d (%.0f%%)\n\n" +
+                        "Resumen por número (number):\n" +
+                        "  - Laptops: %d\n" +
+                        "  - Smartphones: %d\n" +
+                        "  - Tablets: %d\n" +
+                        "  - Tablets Refurbished: %d",
                 totalDispositivos,
                 stockTotal,
                 ingresosTotales,
@@ -140,7 +155,11 @@ public class MostrarDispositivo extends AppCompatActivity
                 laptops, (laptops * 100f / totalDispositivos),
                 smartphones, (smartphones * 100f / totalDispositivos),
                 tablets, (tablets * 100f / totalDispositivos),
-                tabletsRefurb, (tabletsRefurb * 100f / totalDispositivos)
+                tabletsRefurb, (tabletsRefurb * 100f / totalDispositivos),
+                totalNumberLaptops,
+                totalNumberSmartphones,
+                totalNumberTablets,
+                totalNumberTabletsRefurb
         );
 
         tvEstadisticas.setText(statsText);

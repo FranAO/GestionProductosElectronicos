@@ -3,9 +3,9 @@ package com.example.gestionproductoselectronicos.Models;
 public class TabletRefurbished extends Tablet {
     public char nivel_reacondicionamiento;
 
-    public TabletRefurbished(String marca, String modelo, double precio_base, String anio_lanzamiento, int stock, double pantalla_pulgadas, boolean soporte_pen, char nivel_reacondicionamiento)
+    public TabletRefurbished(String marca, String modelo, double precio_base, String anio_lanzamiento, int stock, int number, double pantalla_pulgadas, boolean soporte_pen, char nivel_reacondicionamiento)
     {
-        super(marca, modelo, precio_base, anio_lanzamiento, stock, pantalla_pulgadas, soporte_pen);
+        super(marca, modelo, precio_base, anio_lanzamiento, stock, number, pantalla_pulgadas, soporte_pen);
         this.nivel_reacondicionamiento = nivel_reacondicionamiento;
     }
 

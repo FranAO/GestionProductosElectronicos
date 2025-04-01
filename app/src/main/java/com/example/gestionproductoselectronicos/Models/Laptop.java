@@ -20,9 +20,9 @@ public class Laptop extends Dispositivo
         return almacenamiento_gb;
     }
 
-    public Laptop(String marca, String modelo, double precio_base, String anio_lanzamiento, int stock, String procesador, int ram_gb, int almacenamiento_gb, boolean enPromocion, double descuentoPromocion)
+    public Laptop(String marca, String modelo, double precio_base, String anio_lanzamiento, int stock, int number, String procesador, int ram_gb, int almacenamiento_gb, boolean enPromocion, double descuentoPromocion)
     {
-        super(marca, modelo, precio_base, anio_lanzamiento, stock);
+        super(marca, modelo, precio_base, anio_lanzamiento, stock, number);
         this.procesador = procesador;
         this.ram_gb = ram_gb;
         this.almacenamiento_gb = almacenamiento_gb;

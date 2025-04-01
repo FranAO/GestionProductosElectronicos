@@ -29,6 +29,7 @@ public class AgregarDispositivos extends AppCompatActivity
     private EditText etTarifaBase;
     private EditText etAnioLanzamiento;
     private EditText etStock;
+    private EditText etNumber;
     private EditText etAlmacenamientoGB;
     private EditText etCantidadCamaras;
     private EditText etProcesador;
@@ -58,6 +59,7 @@ public class AgregarDispositivos extends AppCompatActivity
         etTarifaBase = findViewById(R.id.etTarifaBase);
         etAnioLanzamiento = findViewById(R.id.etAnioLanzamiento);
         etStock = findViewById(R.id.etStock);
+        etNumber = findViewById(R.id.etNumber);
         etAlmacenamientoGB = findViewById(R.id.etAlmacenamientoGB);
         etCantidadCamaras = findViewById(R.id.etCantidadCamaras);
         etProcesador = findViewById(R.id.etProcesador);
@@ -133,6 +135,7 @@ public class AgregarDispositivos extends AppCompatActivity
         String anio = etAnioLanzamiento.getText().toString();
         int stock = Integer.parseInt(etStock.getText().toString());
         String tipoDispositivo = spinnerDispositivo.getSelectedItem().toString();
+        int number = Integer.parseInt(etNumber.getText().toString());
 
         switch (tipoDispositivo)
         {
@@ -141,14 +144,14 @@ public class AgregarDispositivos extends AppCompatActivity
                 int almacenamientoGB = Integer.parseInt(etAlmacenamientoGB.getText().toString());
                 String procesador = etProcesador.getText().toString();
                 int ramGB = Integer.parseInt(etRamGB.getText().toString());
-                controllerDispositivo.dispositivos.add(new Laptop(marca, modelo, tarifa, anio, stock, procesador, ramGB, almacenamientoGB, false, 0));
+                controllerDispositivo.dispositivos.add(new Laptop(marca, modelo, tarifa, anio, stock, number, procesador, ramGB, almacenamientoGB, false, 0));
                 break;
             }
             case "Smartphone":
             {
                 int almacenamientoSmartphone = Integer.parseInt(etAlmacenamientoGB.getText().toString());
                 int cantidadCamaras = Integer.parseInt(etCantidadCamaras.getText().toString());
-                controllerDispositivo.dispositivos.add(new Smartphone(marca, modelo, tarifa, anio, stock, almacenamientoSmartphone, cantidadCamaras
+                controllerDispositivo.dispositivos.add(new Smartphone(marca, modelo, tarifa, anio, stock, number, almacenamientoSmartphone, cantidadCamaras
                 ));
                 break;
             }
@@ -156,7 +159,7 @@ public class AgregarDispositivos extends AppCompatActivity
             {
                 double pantallaTablet = Double.parseDouble(etPantallaPulgadas.getText().toString());
                 boolean soportePen = spinnerSoportePen.getSelectedItem().toString().equals("Sí");
-                controllerDispositivo.dispositivos.add(new Tablet(marca, modelo, tarifa, anio, stock, pantallaTablet, soportePen));
+                controllerDispositivo.dispositivos.add(new Tablet(marca, modelo, tarifa, anio, stock, number, pantallaTablet, soportePen));
             break;
             }
             case "TabletRefurbished":
@@ -169,7 +172,7 @@ public class AgregarDispositivos extends AppCompatActivity
                     return;
                 }
                 char nivelReacondicionamiento = nivelStr.charAt(0);
-                controllerDispositivo.dispositivos.add(new TabletRefurbished(marca, modelo, tarifa, anio, stock, pantallaRefurb, false, nivelReacondicionamiento));
+                controllerDispositivo.dispositivos.add(new TabletRefurbished(marca, modelo, tarifa, anio, stock, number, pantallaRefurb, false, nivelReacondicionamiento));
             break;
             }
         }
@@ -183,6 +186,7 @@ public class AgregarDispositivos extends AppCompatActivity
         etTarifaBase.setText("");
         etAnioLanzamiento.setText("");
         etStock.setText("");
+        etNumber.setText("");
         etAlmacenamientoGB.setText("");
         etCantidadCamaras.setText("");
         etProcesador.setText("");

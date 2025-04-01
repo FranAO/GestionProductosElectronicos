@@ -13,9 +13,9 @@ public class Smartphone extends Dispositivo
         return cantidad_camaras;
     }
 
-    public Smartphone(String marca, String modelo, double precio_base, String anio_lanzamiento, int stock, int almacenamiento_gb, int cantidad_camaras)
+    public Smartphone(String marca, String modelo, double precio_base, String anio_lanzamiento, int stock, int number, int almacenamiento_gb, int cantidad_camaras)
     {
-        super(marca, modelo, precio_base, anio_lanzamiento, stock);
+        super(marca, modelo, precio_base, anio_lanzamiento, stock, number);
         this.almacenamiento_gb = almacenamiento_gb;
         this.cantidad_camaras = cantidad_camaras;
     }

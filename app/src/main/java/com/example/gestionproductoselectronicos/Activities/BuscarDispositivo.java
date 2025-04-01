@@ -15,6 +15,8 @@ import com.example.gestionproductoselectronicos.Controllers.Controller;
 import com.example.gestionproductoselectronicos.R;
 import com.example.gestionproductoselectronicos.Models.Dispositivo;
 
+import java.util.List;
+
 
 public class BuscarDispositivo extends AppCompatActivity
 {
@@ -43,14 +45,23 @@ public class BuscarDispositivo extends AppCompatActivity
         btnBuscar.setOnClickListener(v -> {
             String textoBusqueda = etBuscar.getText().toString().trim();
 
-            Dispositivo dispositivoEncontrado = controllerDispositivo.buscarDispositivo(textoBusqueda, textoBusqueda);
+            List<Dispositivo> dispositivoEncontrado = controllerDispositivo.buscarPorTexto(textoBusqueda);
 
-            if (dispositivoEncontrado != null)
+            if (!dispositivoEncontrado.isEmpty())
             {
-                tvResultado.setText(dispositivoEncontrado.mostrarDetalles() + "\nPrecio: " + dispositivoEncontrado.calcular_precio());
-            } else
-            {
-                tvResultado.setText("No se encontró ningún dispositivo.");
+                StringBuilder resultado = new StringBuilder();
+                for (Dispositivo dispositivo : dispositivoEncontrado)
+                {
+                    resultado.append("Tipo:")
+                            .append(dispositivo.getClass().getSimpleName() + "\n")
+                            .append(dispositivo.mostrarDetalles())
+                            .append("\nPrecio Total: $")
+                            .append(dispositivo.calcular_precio())
+                            .append("\n\n");
+                }
+                tvResultado.setText(resultado.toString());
+            } else {
+                tvResultado.setText("No se encontraron reservas.");
             }
         });
     }
